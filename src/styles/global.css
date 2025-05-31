@@ -1,0 +1,44 @@
+/* src/styles/global.css */
+
+:root {
+  --primary-color: #4e0d0d; /* Vinho escuro */
+  --light-bg: #ffffff;    /* Fundo dos elementos de formulário/card (branco puro) */
+  --dark-bg: #3a0a0a;     /* Vinho bem escuro para o fundo da página */
+  --highlight-color: #d4af37; /* Dourado/Amarelo para acentos */
+  
+  --text-on-primary: #ffffff;
+  --text-on-dark-bg: rgba(255, 255, 255, 0.75);
+  --text-dark: #212529; /* Cor de texto escura padrão Bootstrap */
+  
+  --border-color: #ced4da; /* Borda padrão para inputs */
+  --border-focus-color: #a47e1b; /* Dourado mais escuro (derivado do highlight) */
+  
+  --card-radius: 10px;
+  --input-padding-y: 0.75rem;
+  --input-padding-x: 1rem;
+  --font-family-base: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --transition-speed: 0.3s;
+  --flip-transition-duration: 0.7s;
+}
+
+html {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background-color: var(--dark-bg);
+  color: var(--text-dark);
+  font-family: var(--font-family-base);
+  font-size: 16px;
+  line-height: 1.6;
+}

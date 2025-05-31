@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard - Adega ERP</title>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../styles/dashboard.css" />
+</head>
+
+<body>
+  <div class="main-container">
+    <div id="wrapper" class="d-flex">
+      <div class="border-end bg-dark d-flex flex-column justify-content-between" id="sidebar-wrapper">
+        <div>
+          <div class="sidebar-heading text-white py-4 px-3 fs-4 fw-bold">Adega ERP</div>
+          <div class="list-group list-group-flush">
+            <a href="#" class="list-group-item list-group-item-action bg-dark text-white active"
+              data-section="dashboard">
+              <span class="material-icons me-2">dashboard</span>Dashboard
+            </a>
+            <a href="#" class="list-group-item list-group-item-action bg-dark text-white" data-section="produtos">
+              <span class="material-icons me-2">inventory_2</span>Produtos
+            </a>
+            <a href="#" class="list-group-item list-group-item-action bg-dark text-white" data-section="vendas">
+              <span class="material-icons me-2">shopping_cart</span>Vendas
+            </a>
+            <a href="#" class="list-group-item list-group-item-action bg-dark text-white" data-section="clientes">
+              <span class="material-icons me-2">people</span>Clientes
+            </a>
+          </div>
+        </div>
+        <div class="p-3">
+          <button class="btn btn-outline-light w-100 d-flex align-items-center justify-content-center gap-3">
+            <span class="material-icons">power_settings_new</span>
+            <span>Sair</span>
+          </button>
+        </div>
+      </div>
+
+      <div id="page-content-wrapper" class="flex-grow-1">
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
+          <div class="container-fluid d-flex justify-content-between align-items-center">
+            <button class="btn btn-link text-dark d-lg-none" id="sidebarToggle">
+              <span class="material-icons">menu</span>
+            </button>
+
+            <span class="navbar-brand fw-bold mb-0 h1">Dashboard</span>
+
+            <div class="dropdown d-flex align-items-center">
+              <img src="../assets/images/img.png" alt="Foto do Usuário" class="rounded-circle me-2" width="60"
+                height="60" />
+              <button class="btn dropdown-toggle fw-semibold" type="button" id="dropdownUser" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                João da Silva
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownUser">
+                <li><a class="dropdown-item" href="#" id="linkMeuPerfil">Meu Perfil</a></li>
+                <li><a class="dropdown-item" href="#" id="linkConfiguracoes">Configurações</a></li>
+                <li>
+                  <hr class="dropdown-divider" />
+                </li>
+                <li><a class="dropdown-item text-danger" href="#">Sair</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+        <div class="container-fluid px-4 py-4">
+
+          <div id="section-dashboard" class="dashboard-section">
+            <div class="row g-4 mb-4">
+              <div class="col-md-3">
+                <div class="card border-0 shadow-sm h-100">
+                  <div class="card-body">
+                    <h5 class="card-title text-muted">Total de Vendas</h5>
+                    <p class="card-text fs-4 fw-bold">R$ 25.400,00</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="card border-0 shadow-sm h-100">
+                  <div class="card-body d-flex align-items-center">
+                    <span class="material-icons text-primary me-3 fs-2">inventory</span>
+                    <div>
+                      <h5 class="card-title text-muted mb-1">Produtos no Estoque</h5>
+                      <p class="card-text fs-4 fw-bold mb-0">745</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="card border-0 shadow-sm h-100">
+                  <div class="card-body d-flex align-items-center">
+                    <span class="material-icons text-warning me-3 fs-2">warning</span>
+                    <div>
+                      <h5 class="card-title text-muted mb-1">Produtos com Estoque Baixo</h5>
+                      <p class="card-text fs-4 fw-bold mb-0">12</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="card border-0 shadow-sm h-100">
+                  <div class="card-body d-flex align-items-center">
+                    <span class="material-icons text-success me-3 fs-2">sell</span>
+                    <div>
+                      <h5 class="card-title text-muted mb-1">Vendas Hoje</h5>
+                      <p class="card-text fs-4 fw-bold mb-0">R$ 1.250,00</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row g-4 mb-4">
+              <div class="col-lg-6">
+                <div class="card border-0 shadow-sm h-100">
+                  <div class="card-header bg-white border-0">
+                    <h5 class="mb-0">Vendas Recentes</h5>
+                  </div>
+                  <div class="card-body">
+                    <canvas id="salesChart" height="200"></canvas>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="card border-0 shadow-sm h-100">
+                  <div class="card-header bg-white border-0 d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Últimas Vendas</h5>
+                    <a href="#" class="text-primary small">Ver todas</a>
+                  </div>
+                  <div class="card-body p-0">
+                    <div class="table-responsive">
+                      <table class="table table-hover mb-0">
+                        <thead>
+                          <tr>
+                            <th>Cliente</th>
+                            <th>Data</th>
+                            <th>Valor</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Paulo Oliveira</td>
+                            <td>1 m. ago</td>
+                            <td>R$ 1.200,00</td>
+                          </tr>
+                          <tr>
+                            <td>Mariana Santos</td>
+                            <td>1 dia. ago</td>
+                            <td>R$ 980,00</td>
+                          </tr>
+                          <tr>
+                            <td>Lucas Almeida</td>
+                            <td>1 dia. ago</td>
+                            <td>R$ 7.300,00</td>
+                          </tr>
+                          <tr>
+                            <td>Ana Pereira</td>
+                            <td>1 dia. ago</td>
+                            <td>R$ 520,00</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-12">
+                <div class="card border-0 shadow-sm">
+                  <div class="card-header bg-white border-0 d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Produtos (Visão Geral)</h5> <button
+                      class="btn btn-primary btn-sm d-flex align-items-center"
+                      onclick="document.querySelector('a[data-section=\'produtos\']').click();">
+                      <span class="material-icons me-1">inventory_2</span>
+                      Gerenciar Produtos
+                    </button>
+                  </div>
+                  <div class="card-body p-0">
+                    <div class="table-responsive">
+                      <table class="table table-hover mb-0">
+                        <thead>
+                          <tr>
+                            <th>Nome</th>
+                            <th>Categoria</th>
+                            <th>Preço</th>
+                            <th>Estoque</th>
+                            <th>Avaliação</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Vinho Tinto Reserva</td>
+                            <td>Reserva</td>
+                            <td>R$ 90,00</td>
+                            <td>150</td>
+                            <td>★★★★☆</td>
+                          </tr>
+                          <tr>
+                            <td>Chardonnay Especial</td>
+                            <td>Chardonnay</td>
+                            <td>R$ 120,00</td>
+                            <td>95</td>
+                            <td>★★★★☆</td>
+                          </tr>
+                          <tr>
+                            <td>Espumante Brut</td>
+                            <td>Espumante</td>
+                            <td>R$ 220,00</td>
+                            <td>200</td>
+                            <td>★★★★☆</td>
+                          </tr>
+                          <tr>
+                            <td>Merlot Envelhecido</td>
+                            <td>Merlot</td>
+                            <td>R$ 110,00</td>
+                            <td>45</td>
+                            <td>★★★★☆</td>
+                          </tr>
+                          <tr>
+                            <td>Sauvignon Blanc</td>
+                            <td>Sauvignon</td>
+                            <td>R$ 70,00</td>
+                            <td>180</td>
+                            <td>★★★★☆</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="section-produtos" class="dashboard-section" style="display: none;">
+            <h2>Produtos</h2>
+            <p>Aqui você gerenciará seus produtos: adicionar, editar, remover, ver estoque, etc.</p>
+            <div class="card shadow-sm mt-4">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                <span>Lista Completa de Produtos</span>
+                <button class="btn btn-primary btn-sm">
+                  <span class="material-icons me-1"
+                    style="font-size: 1.2em; vertical-align: middle;">add_circle_outline</span>
+                  Adicionar Novo Produto
+                </button>
+              </div>
+              <div class="card-body">
+                <table class="table table-striped table-hover">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Nome do Produto</th>
+                      <th>Categoria</th>
+                      <th>Preço Unitário</th>
+                      <th>Estoque Atual</th>
+                      <th>Status</th>
+                      <th>Ações</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>PROD-001</td>
+                      <td>Vinho Tinto Reserva Especial Safra 2018</td>
+                      <td>Tinto Reserva</td>
+                      <td>R$ 185,90</td>
+                      <td>45</td>
+                      <td><span class="badge bg-success">Ativo</span></td>
+                      <td>
+                        <button class="btn btn-sm btn-outline-primary py-0 px-1"><span class="material-icons"
+                            style="font-size: 1.1rem;">edit</span></button>
+                        <button class="btn btn-sm btn-outline-info py-0 px-1 mx-1"><span class="material-icons"
+                            style="font-size: 1.1rem;">visibility</span></button>
+                        <button class="btn btn-sm btn-outline-danger py-0 px-1"><span class="material-icons"
+                            style="font-size: 1.1rem;">delete_outline</span></button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>PROD-002</td>
+                      <td>Espumante Brut Nature Vintage 2020</td>
+                      <td>Espumante Premium</td>
+                      <td>R$ 120,00</td>
+                      <td>78</td>
+                      <td><span class="badge bg-success">Ativo</span></td>
+                      <td>
+                        <button class="btn btn-sm btn-outline-primary py-0 px-1"><span class="material-icons"
+                            style="font-size: 1.1rem;">edit</span></button>
+                        <button class="btn btn-sm btn-outline-info py-0 px-1 mx-1"><span class="material-icons"
+                            style="font-size: 1.1rem;">visibility</span></button>
+                        <button class="btn btn-sm btn-outline-danger py-0 px-1"><span class="material-icons"
+                            style="font-size: 1.1rem;">delete_outline</span></button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>PROD-003</td>
+                      <td>Vinho Branco Sauvignon Blanc Vale Central</td>
+                      <td>Branco Leve</td>
+                      <td>R$ 65,50</td>
+                      <td>150</td>
+                      <td><span class="badge bg-warning text-dark">Estoque Baixo</span></td>
+                      <td>
+                        <button class="btn btn-sm btn-outline-primary py-0 px-1"><span class="material-icons"
+                            style="font-size: 1.1rem;">edit</span></button>
+                        <button class="btn btn-sm btn-outline-info py-0 px-1 mx-1"><span class="material-icons"
+                            style="font-size: 1.1rem;">visibility</span></button>
+                        <button class="btn btn-sm btn-outline-danger py-0 px-1"><span class="material-icons"
+                            style="font-size: 1.1rem;">delete_outline</span></button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <nav aria-label="Page navigation example">
+                  <ul class="pagination justify-content-center">
+                    <li class="page-item disabled"><a class="page-link" href="#">Anterior</a></li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Próximo</a></li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+
+          <div id="section-vendas" class="dashboard-section" style="display: none;">
+            <h2>Vendas</h2>
+            <p>Aqui você visualizará o histórico de vendas, registrará novas vendas, etc.</p>
+            <div class="card shadow-sm mt-4">
+              <div class="card-header">Registrar Nova Venda</div>
+              <div class="card-body">
+                <p>Formulário de nova venda ou listagem de vendas recentes...</p>
+              </div>
+            </div>
+          </div>
+
+          <div id="section-clientes" class="dashboard-section" style="display: none;">
+            <h2>Clientes</h2>
+            <p>Gerencie sua base de clientes: cadastrar, editar, visualizar histórico.</p>
+            <div class="card shadow-sm mt-4">
+              <div class="card-header">Lista de Clientes</div>
+              <div class="card-body">
+                <p>Tabela de clientes ou formulário de cadastro...</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+  <div class="modal fade" id="modalMeuPerfil" tabindex="-1" aria-labelledby="modalMeuPerfilLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered"> {/* modal-lg para mais espaço, modal-dialog-centered para
+      centralizar */}
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalMeuPerfilLabel">
+            <span class="material-icons align-middle me-1">account_circle</span>
+            Meu Perfil
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="formMeuPerfil">
+            <div class="row">
+              <div class="col-md-4 text-center mb-3 mb-md-0">
+                <img src="../assets/images/img.png" alt="Foto do Usuário" class="img-thumbnail rounded-circle mb-2"
+                  style="width: 150px; height: 150px; object-fit: cover;">
+                <input type="file" class="form-control form-control-sm" id="profileAvatarFile">
+                <small class="form-text text-muted">Alterar foto</small>
+              </div>
+              <div class="col-md-8">
+                <div class="mb-3">
+                  <label for="profileNome" class="form-label">Nome Completo</label>
+                  <input type="text" class="form-control" id="profileNome" value="João da Silva">
+                </div>
+                <div class="mb-3">
+                  <label for="profileEmail" class="form-label">Endereço de E-mail</label>
+                  <input type="email" class="form-control" id="profileEmail" value="joao.silva@example.com" readonly>
+                  <small class="form-text text-muted">O e-mail não pode ser alterado.</small>
+                </div>
+                <div class="mb-3">
+                  <label for="profileTelefone" class="form-label">Telefone (Opcional)</label>
+                  <input type="tel" class="form-control" id="profileTelefone" placeholder="(XX) XXXXX-XXXX">
+                </div>
+              </div>
+            </div>
+            <hr>
+            <h6 class="mt-4">Alterar Senha</h6>
+            <div class="mb-3">
+              <label for="profileSenhaAtual" class="form-label">Senha Atual</label>
+              <input type="password" class="form-control" id="profileSenhaAtual"
+                placeholder="Deixe em branco se não for alterar">
+            </div>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="profileNovaSenha" class="form-label">Nova Senha</label>
+                <input type="password" class="form-control" id="profileNovaSenha">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="profileConfirmarNovaSenha" class="form-label">Confirmar Nova Senha</label>
+                <input type="password" class="form-control" id="profileConfirmarNovaSenha">
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button type="submit" form="formMeuPerfil" class="btn btn-primary">Salvar Alterações</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalConfiguracoes" tabindex="-1" aria-labelledby="modalConfiguracoesLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalConfiguracoesLabel">
+            <span class="material-icons align-middle me-1">settings</span>
+            Configurações
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="formConfiguracoes">
+            <p class="text-muted mb-3">Ajuste as preferências do sistema de acordo com suas necessidades.</p>
+            <h6>Notificações</h6>
+            <div class="form-check form-switch mb-2">
+              <input class="form-check-input" type="checkbox" role="switch" id="configNotificacoesEmail" checked>
+              <label class="form-check-label" for="configNotificacoesEmail">Receber notificações de vendas por
+                e-mail</label>
+            </div>
+            <div class="form-check form-switch mb-3">
+              <input class="form-check-input" type="checkbox" role="switch" id="configNotificacoesApp">
+              <label class="form-check-label" for="configNotificacoesApp">Receber notificações de estoque baixo no
+                app</label>
+            </div>
+            <hr>
+            <h6>Interface</h6>
+            <div class="form-check form-switch mb-3">
+              <input class="form-check-input" type="checkbox" role="switch" id="configTemaEscuro" disabled>
+              <label class="form-check-label" for="configTemaEscuro">Ativar tema escuro (em breve)</label>
+            </div>
+            <div class="mb-3">
+              <label for="configIdioma" class="form-label">Idioma do Sistema</label>
+              <select class="form-select" id="configIdioma">
+                <option selected value="pt-br">Português (Brasil)</option>
+                <option value="en">Inglês (English)</option>
+                <option value="es">Espanhol (Español)</option>
+              </select>
+            </div>
+            <hr>
+            <h6>Dados</h6>
+            <div class="mb-3">
+              <label for="configItensPorPagina" class="form-label">Itens por página (Tabelas)</label>
+              <select class="form-select form-select-sm w-auto" id="configItensPorPagina">
+                <option value="10">10</option>
+                <option selected value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+              </select>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" form="formConfiguracoes" class="btn btn-primary">Salvar Configurações</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script type="module" src="../main.js"></script>
+</body>
+
+</html>

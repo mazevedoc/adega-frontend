@@ -1,0 +1,223 @@
+:root {
+  --sidebar-width: 280px;
+  --header-height: 70px;
+  --card-radius: 12px;
+  --primary-color: #4e0d0d;
+  --light-bg: #f8f9fc;
+  --dark-bg: #3a0a0a;
+  --transition-speed: 0.3s;
+  --highlight-color: #d4af37;
+}
+
+/* RESET BASE */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.bg-dark {
+  background-color: var(--primary-color) !important;
+  border-right: 1px solid var(--primary-color) !important;
+}
+
+body {
+  background-color: var(--dark-bg);
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ESTRUTURA PRINCIPAL */
+.main-container {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  background-color: var(--dark-bg);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+  max-width: 95%;
+  margin: 0 auto;
+  transition: all 0.3s ease;
+}
+
+/* SIDEBAR */
+#sidebar-wrapper {
+  width: var(--sidebar-width);
+  background-color: var(--primary-color);
+  border-right: 1px solid #4a1a1a;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  transition: all var(--transition-speed) ease;
+}
+
+#sidebar-wrapper .list-group-item {
+  display: flex;
+  border: none;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  gap: 1rem;
+  background-color: transparent;
+  color: rgba(255, 255, 255, 0.8);
+  transition: background-color var(--transition-speed) ease;
+}
+
+#sidebar-wrapper .list-group-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+#sidebar-wrapper .list-group-item.active {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  font-weight: 600;
+  position: relative;
+}
+
+#sidebar-wrapper .list-group-item.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 4px;
+  background-color: var(--highlight-color);
+  border-radius: 0 4px 4px 0;
+}
+
+/* CONTEÚDO PRINCIPAL */
+#page-content-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background-color: white;
+  transition: margin-left var(--transition-speed) ease;
+  padding: 20px;
+  border-radius: 0 15px 15px 0;
+}
+
+/* CARDS */
+.card {
+  border-radius: var(--card-radius);
+  border: none;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.card-text {
+  font-size: 1.25rem;
+}
+
+.card .text-muted {
+  font-size: 0.875rem;
+}
+
+/* TABELA DE VENDAS RECENTES */
+.table-responsive {
+  overflow-x: auto;
+}
+
+.table thead.table-dark th {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+.table td, .table th, .table tr {
+  vertical-align: middle;
+  border-bottom: none;
+}
+
+/* RESPONSIVIDADE GERAL */
+@media (min-width: 992px) {
+  main {
+    margin-left: var(--sidebar-width);
+  }
+}
+
+/* MÉDIAS TELAS (768px - 1440px) */
+@media (min-width: 768px) and (max-width: 1440px) {
+  .main-container {
+    max-width: 98%;
+    margin: 0 auto;
+  }
+
+  #page-content-wrapper {
+    padding: 15px;
+  }
+}
+
+/* PEQUENAS TELAS */
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+
+  .main-container {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  #sidebar-wrapper {
+    position: absolute;
+    left: 40px;
+    top: 90px;
+    z-index: 1000;
+    height: auto;
+    max-height: 0;
+    overflow: hidden;
+    border-radius: 10px;
+    transition: max-height var(--transition-speed) ease;
+    width: calc(100% - 20px);
+  }
+
+  #sidebar-wrapper.sidebar-open {
+    max-height: 400px;
+    max-width: 200px;
+  }
+
+  #page-content-wrapper {
+    margin-left: 0;
+    padding: 15px;
+  }
+}
+
+/* GRANDES TELAS */
+@media (min-width: 1441px) {
+  .main-container {
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+
+  .container-fluid {
+    max-width: calc(1600px - var(--sidebar-width));
+    margin: 0 auto;
+    padding: 20px 40px;
+  }
+
+  #salesChart {
+    max-height: 400px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .container-fluid {
+    padding: 0px 30px;
+  }
+
+  body {
+    font-size: 1.05rem;
+  }
+
+  .card {
+    padding: 1.5rem;
+  }
+}
