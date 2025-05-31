@@ -1,10 +1,10 @@
 # 🍷 Adega ERP
 
-![Status](https://img.shields.io/badge/Status-Em%20Desenvolvimento-blue)  
-![License](https://img.shields.io/badge/License-MIT-green)  
-![OnRender](https://img.shields.io/badge/Deploy-Render-brightgreen)  
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)  
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)  
+![Status](https://img.shields.io/badge/Status-Em%20Desenvolvimento-blue)
+![License](https://img.shields.io/badge/License-MIT-green)
+![OnRender](https://img.shields.io/badge/Deploy-Render-brightgreen)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-339933?logo=nodedotjs&logoColor=white)  
 
 ---
@@ -57,7 +57,7 @@ Este é um sistema de ERP voltado para gestão de adegas, com o objetivo de faci
 
 | Nome | GitHub |
 |------|--------|
-| Mazevedo | [@mazevedoc](https://github.com/mazevedoc) |
+| Melque Azevedo | [@mazevedoc](https://github.com/mazevedoc) |
 
 ---
 
