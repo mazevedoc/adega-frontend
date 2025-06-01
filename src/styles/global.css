@@ -1,18 +1,16 @@
-/* src/styles/global.css */
-
 :root {
-  --primary-color: #4e0d0d; /* Vinho escuro */
-  --light-bg: #ffffff;    /* Fundo dos elementos de formulário/card (branco puro) */
-  --dark-bg: #3a0a0a;     /* Vinho bem escuro para o fundo da página */
-  --highlight-color: #d4af37; /* Dourado/Amarelo para acentos */
-  
+  --primary-color: #4e0d0d;
+  --light-bg: #ffffff;
+  --dark-bg: #3a0a0a;
+  --highlight-color: #d4af37;
+
   --text-on-primary: #ffffff;
   --text-on-dark-bg: rgba(255, 255, 255, 0.75);
-  --text-dark: #212529; /* Cor de texto escura padrão Bootstrap */
-  
-  --border-color: #ced4da; /* Borda padrão para inputs */
-  --border-focus-color: #a47e1b; /* Dourado mais escuro (derivado do highlight) */
-  
+  --text-dark: #212529;
+
+  --border-color: #ced4da;
+  --border-focus-color: #a47e1b;
+
   --card-radius: 10px;
   --input-padding-y: 0.75rem;
   --input-padding-x: 1rem;
@@ -41,4 +39,23 @@ body {
   font-family: var(--font-family-base);
   font-size: 16px;
   line-height: 1.6;
+}
+
+.invalid-feedback-custom {
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 0.875em;
+  color: #dc3545;
+  display: block;
+}
+
+.form-control.is-invalid,
+.form-select.is-invalid {
+  border-color: #dc3545 !important;
+}
+
+.form-control.is-invalid:focus,
+.form-select.is-invalid:focus {
+  border-color: #dc3545 !important;
+  box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25) !important;
 }

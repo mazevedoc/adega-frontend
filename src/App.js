@@ -1,5 +1,5 @@
 
-import { initAuthPage } from './controllers/authController.js'; // Ajuste o caminho
+import { initAuthPage } from './controllers/authController.js';
 
 export function renderLoginPage(containerId = 'root') {
     const appContainer = document.getElementById(containerId);

@@ -371,3 +371,25 @@ input:-webkit-autofill:active {
     padding: 1rem 0 0.5rem 0;
   }
 }
+
+.password-toggle-icon {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: var(--text-muted-on-light);
+  z-index: 3;
+  padding: 0.375rem;
+  user-select: none;
+  transition: color var(--transition-speed) ease;
+}
+
+.password-toggle-icon:hover {
+  color: var(--primary-color);
+}
+
+.form-floating:has(.password-toggle-icon)>.form-control[type="password"],
+.form-floating:has(.password-toggle-icon)>.form-control[type="text"] {
+  padding-right: 3rem;
+}
