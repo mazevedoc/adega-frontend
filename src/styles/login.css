@@ -71,6 +71,7 @@ body.login-page-active {
   border: 1px solid var(--border-color-light, #e0e0e0);
   color: var(--text-dark);
 
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
 }
@@ -242,6 +243,10 @@ input:-webkit-autofill:active {
   border-radius: calc(var(--card-radius) / 1.5);
 }
 
+.mt-3 {
+  margin-top: 2rem !important;
+}
+
 .login-btn:hover {
   background-color: var(--highlight-color);
   border-color: var(--highlight-color);
@@ -323,10 +328,6 @@ input:-webkit-autofill:active {
 @media (max-width: 576px) {
   body.login-page-active {
     padding: 0.5rem;
-  }
-
-  .login-card-face {
-    padding: 1.5rem;
   }
 
   .login-header h2.login-title {

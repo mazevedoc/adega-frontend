@@ -25,3 +25,33 @@ export function isPasswordSufficient(password) {
     if (isEmpty(password)) return false;
     return isMinLength(password, 6);
 }
+
+export function validateLoginFields(email, password) {
+  return email && password;
+}
+
+export function validateRegisterFields(nome, email, password, confirmPassword) {
+  return nome && email && password && confirmPassword && password === confirmPassword;
+}
+
+export function validateLoginForm(email, password) {
+    if (!email || !password) {
+        alert('Preencha todos os campos.');
+        return false;
+    }
+    return true;
+}
+
+export function validateRegisterForm({ name, email, password, confirmPassword, role }) {
+    if (!name || !email || !password || !confirmPassword || !role) {
+        alert('Todos os campos são obrigatórios.');
+        return false;
+    }
+
+    if (password !== confirmPassword) {
+        alert('As senhas não coincidem.');
+        return false;
+    }
+
+    return true;
+}

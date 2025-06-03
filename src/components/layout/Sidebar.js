@@ -1,5 +1,3 @@
-// src/components/layout/Sidebar.js
-
 export function initSidebarToggle() {
   const sidebarToggle = document.getElementById('sidebarToggle');
   const sidebarWrapper = document.getElementById('sidebar-wrapper');
@@ -7,9 +5,7 @@ export function initSidebarToggle() {
   if (sidebarToggle && sidebarWrapper) {
     sidebarToggle.addEventListener('click', () => {
       sidebarWrapper.classList.toggle('sidebar-open');
-      document.body.classList.toggle('sidebar-overlay-active'); // Adiciona/remove classe no body
-      console.log('Sidebar toggled. Classes no sidebar-wrapper:', sidebarWrapper.className);
-      console.log('Body classes:', document.body.className);
+      document.body.classList.toggle('sidebar-overlay-active');
     });
 
     document.body.addEventListener('click', function(event) {
@@ -29,7 +25,7 @@ export function initSidebarToggle() {
 
 export function initSidebarNavigation() {
   const links = document.querySelectorAll('#sidebar-wrapper .list-group-item[data-section]');
-  const sections = document.querySelectorAll('.dashboard-section'); // No HTML, as seções de conteúdo
+  const sections = document.querySelectorAll('.dashboard-section');
   const navbarTitle = document.querySelector('#page-content-wrapper .navbar-brand');
 
   if (!links.length) {
@@ -55,9 +51,7 @@ export function initSidebarNavigation() {
     link.addEventListener('click', function(e) {
       e.preventDefault();
 
-      // Remove 'active' de todos os links
       links.forEach(l => l.classList.remove('active'));
-      // Adiciona 'active' ao link clicado
       this.classList.add('active');
 
       const sectionIdToShow = 'section-' + this.dataset.section;
@@ -67,31 +61,23 @@ export function initSidebarNavigation() {
         section.style.display = 'none';
       });
 
-      // Mostra a seção de conteúdo correspondente
       const targetSection = document.getElementById(sectionIdToShow);
       if (targetSection) {
         targetSection.style.display = 'block';
-        console.log(`Mostrando seção: ${sectionIdToShow}`);
       } else {
         console.warn(`Seção '${sectionIdToShow}' não encontrada.`);
-        // Se a seção 'dashboard' não for uma div separada, mas sim o conteúdo principal,
-        // você pode querer esconder as outras e garantir que o conteúdo principal esteja visível.
-        // No seu HTML, #section-dashboard existe, então está ok.
       }
 
-      // Atualiza o título na navbar
       if (navbarTitle) {
         navbarTitle.textContent = titleMap[this.dataset.section] || 'Dashboard';
       }
     });
   });
 
-  // Ativa a seção 'dashboard' por padrão ao carregar (opcional, mas comum)
   const defaultActiveLink = document.querySelector('#sidebar-wrapper .list-group-item[data-section="dashboard"]');
   if (defaultActiveLink) {
-    defaultActiveLink.click(); // Simula um clique para configurar o estado inicial
+    defaultActiveLink.click();
   } else {
-     // Se não houver link 'dashboard', ativa o primeiro link como padrão
     if (links.length > 0) links[0].click();
   }
 }

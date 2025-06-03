@@ -6,15 +6,10 @@ export function handleResponsiveSidebar() {
   }
 
   const checkScreenSize = () => {
-    if (window.innerWidth >= 992) { // Breakpoint 'lg' do Bootstrap
-      // Em telas grandes, a sidebar deve estar visível e integrada ao layout.
-      // A classe 'sidebar-open' pode ser necessária se o CSS depender dela
-      // para o estado "aberto" mesmo em telas grandes, ou para reverter um toggle.
+    if (window.innerWidth >= 992) { 
       sidebarWrapper.classList.add('sidebar-open');
     } else {
-      // Em telas menores, a sidebar começa escondida (pelo CSS: margin-left: -250px).
-      // O botão de toggle irá adicionar/remover 'sidebar-open' para mostrá-la/escondê-la.
-      // Não removemos 'sidebar-open' aqui para não interferir com um toggle manual do usuário.
+     
     }
   };
 
@@ -24,11 +19,9 @@ export function handleResponsiveSidebar() {
 }
 
 export function adjustLayoutForLargeScreens() {
-  // Esta função pode ser usada para ajustes mais específicos em telas grandes,
-  // se necessário. Por enquanto, pode ficar vazia ou conter lógica adicional.
   console.log("adjustLayoutForLargeScreens chamado - sem lógica específica implementada por padrão.");
   if (window.innerWidth >= 992) {
-    // Exemplo: console.log("Tela grande detectada, aplicando ajustes de layout.");
+
   }
 }
 
@@ -55,9 +48,8 @@ export function initUserProfileModals() {
 
   if (linkMeuPerfil && modalPerfilInstance) {
     linkMeuPerfil.addEventListener('click', function (event) {
-      event.preventDefault(); // Previne a navegação do link '#'
+      event.preventDefault();
       modalPerfilInstance.show();
-      console.log("Modal 'Meu Perfil' aberto.");
     });
   } else {
     if (!linkMeuPerfil) console.warn("Link 'linkMeuPerfil' não encontrado.");
@@ -66,9 +58,8 @@ export function initUserProfileModals() {
 
   if (linkConfiguracoes && modalConfiguracoesInstance) {
     linkConfiguracoes.addEventListener('click', function (event) {
-      event.preventDefault(); // Previne a navegação do link '#'
+      event.preventDefault();
       modalConfiguracoesInstance.show();
-      console.log("Modal 'Configurações' aberto.");
     });
   } else {
     if (!linkConfiguracoes) console.warn("Link 'linkConfiguracoes' não encontrado.");

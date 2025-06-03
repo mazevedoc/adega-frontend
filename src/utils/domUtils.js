@@ -21,6 +21,7 @@ export function isSelected(selectElement) {
 
 export function displayFieldError(container, message) {
     if (!container) return;
+
     let feedback = container.querySelector('.invalid-feedback');
 
     if (!feedback) {
@@ -38,11 +39,13 @@ export function displayFieldError(container, message) {
 
 export function clearFieldError(container) {
     if (!container) return;
+
     const feedback = container.querySelector('.invalid-feedback');
     const input = container.querySelector('input, select');
 
     if (feedback) feedback.textContent = '';
     if (input) input.classList.remove('is-invalid');
+
     container.classList.remove('has-error');
 }
 
@@ -63,26 +66,21 @@ export function showUserFeedback(message, type = 'info', formElement = document.
     }
 
     feedbackContainer.classList.remove('alert-success', 'alert-danger', 'alert-info');
-    switch (type) {
-        case 'success':
-            feedbackContainer.classList.add('alert-success');
-            break;
-        case 'error':
-            feedbackContainer.classList.add('alert-danger');
-            break;
-        default:
-            feedbackContainer.classList.add('alert-info');
-    }
+
+    const typeClasses = {
+        success: 'alert-success',
+        error: 'alert-danger',
+        info: 'alert-info'
+    };
+    feedbackContainer.classList.add(typeClasses[type] || 'alert-info');
 
     feedbackContainer.textContent = message;
     feedbackContainer.style.opacity = '1';
 
-    setTimeout(() => {
-        feedbackContainer.style.opacity = '0';
+    if (timeout > 0) {
         setTimeout(() => {
-            if (feedbackContainer && feedbackContainer.parentNode) {
-                feedbackContainer.remove();
-            }
-        }, 300); // Espera o fade-out terminar
-    }, timeout);
+            feedbackContainer.style.opacity = '0';
+            setTimeout(() => feedbackContainer.remove(), 300);
+        }, timeout);
+    }
 }

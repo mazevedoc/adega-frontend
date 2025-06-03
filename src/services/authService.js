@@ -1,29 +1,21 @@
-export async function loginUser(credentials) {
-    console.log("authService: Enviando credenciais de login para API (simulado)", credentials);
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            if (credentials.email === "teste@adega.com" && credentials.password === "123456") {
-                resolve({
-                    token: "fake-jwt-token-12345",
-                    user: { id: 1, name: "Usuário Teste", email: credentials.email, role: "admin" },
-                    message: "Login bem-sucedido"
-                });
-            } else {
-                const error = new Error("Credenciais inválidas.");
-                reject(error);
-            }
-        }, 1000);
-    });
+const fakeUsers = [];
+
+export async function loginUser({ email, password }) {
+    const user = fakeUsers.find(u => u.email === email && u.password === password);
+    if (user) {
+        return { success: true, user };
+    } else {
+        return { success: false, message: 'Credenciais inválidas.' };
+    }
 }
 
-export async function registerUser(userData) {
-    console.log("authService: Enviando dados de registro para API (simulado)", userData);
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            resolve({
-                message: "Usuário cadastrado com sucesso!",
-                user: { id: Date.now(), ...userData }
-            });
-        }, 1500);
-    });
+export async function registerUser({ name, email, password, role }) {
+    const exists = fakeUsers.some(u => u.email === email);
+    if (exists) {
+        return { success: false, message: 'Email já cadastrado.' };
+    }
+
+    const newUser = { name, email, password, role };
+    fakeUsers.push(newUser);
+    return { success: true };
 }
